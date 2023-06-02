@@ -4,11 +4,11 @@
   
     
     <entry>
-      <title>第二篇文章</title>
-      <link href="/posts/25522/"/>
-      <url>/posts/25522/</url>
+      <title>机器学习</title>
+      <link href="/posts/29139/"/>
+      <url>/posts/29139/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a><p align="center">机器学习</p></h1><h2 id="两种主要类型"><a href="#两种主要类型" class="headerlink" title="两种主要类型"></a><p align="left">两种主要类型</p></h2><h3 id="1-监督学习-Supervised-Learning"><a href="#1-监督学习-Supervised-Learning" class="headerlink" title="1.监督学习(Supervised Learning)"></a><p align="left">1.监督学习(Supervised Learning)</p></h3><p><img src="https://api2.mubu.com/v3/document_image/3413a5cb-b522-42e8-ae40-3a988a00321d-12774614.jpg" alt="image"></p><p>1、Regression-回归：从无限多种可能输出数字中预测数字。</p><p>2、Classfication-分类：预测类别，可能的输出都是一小组。</p><hr><h3 id="2-无监督学习-Unsupervised-Learning"><a href="#2-无监督学习-Unsupervised-Learning" class="headerlink" title="2.无监督学习(Unsupervised Learning)"></a><p align="left">2.无监督学习(Unsupervised Learning)</p></h3><p>没有试图监督算法而为了给每个输入提供一些正确的答案，相反，为了弄清数据中有什么模式或者结构。</p><p><img src="https://api2.mubu.com/v3/document_image/ab575484-7afb-4726-b350-0697e0a4cf12-12774614.jpg" alt="image"></p><p>1、Clustering-聚类：获取没有标签的数据并尝试将他们自动分组到集群中。例如相似推荐，就是把相似的内容归类后处理。</p><p>2、Anomaly detection-异常检测：用于检测异常事件。</p><p>3、Dimensionality reduction-降维：压缩大数据集。</p><hr><h3 id="3-线性回归模型-linear-regression"><a href="#3-线性回归模型-linear-regression" class="headerlink" title="3.线性回归模型(linear regression)"></a><p align="left">3.线性回归模型(linear regression)</p></h3><p>Training set-训练集、features-输入变量 <em>x</em>（特征或输入特征）、targets-目标变量  <em>y</em></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202306021634673.webp" alt="image-20230602163455564"></p><p>Univariate linear regression-单变量线性回归</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202306021647760.webp" alt="image-20230602164734648"></p><p><strong>1.Cost function-代价函数</strong></p><p>平方误差代价函数</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202306021702346.webp" alt="image-20230602170247191"></p><p>如何使用代价函数为模型找到最佳参数？</p><p>使  <em>J</em>  越小越好。  </p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202306021719541.webp" alt="image-20230602171953431"></p><p>先找最优的权重 <em>w</em> ，令 <em>b</em> 为 0。做代价函数图—二维</p><p>多元函数求极值的问题。</p><p>可视化代价函数：</p><p>回到原始问题，<em>b</em> 不为 0 时：</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202306021801888.webp" alt="image-20230602180127719"></p><hr><p><strong>Gradient descent-梯度下降</strong></p><p>高效算法：代码编写自动找到 <em>w</em> 和 <em>b</em>，实现最好的拟合。</p>]]></content>
       
       
       
@@ -17,11 +17,11 @@
     
     
     <entry>
-      <title>机器学习</title>
-      <link href="/posts/29139/"/>
-      <url>/posts/29139/</url>
+      <title>第二篇文章</title>
+      <link href="/posts/25522/"/>
+      <url>/posts/25522/</url>
       
-        <content type="html"><![CDATA[<h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1><h2 id="两种主要类型"><a href="#两种主要类型" class="headerlink" title="两种主要类型"></a>两种主要类型</h2><h3 id="监督学习-Supervised-Learning"><a href="#监督学习-Supervised-Learning" class="headerlink" title="监督学习(Supervised Learning)"></a>监督学习(Supervised Learning)</h3><p><img src="https://api2.mubu.com/v3/document_image/3413a5cb-b522-42e8-ae40-3a988a00321d-12774614.jpg" alt="image"></p><p>1、Regression-回归：从无限多种可能输出数字中预测数字。</p><p>2、Classfication-分类：预测类别，可能的输出都是一小组。</p><hr><h3 id="无监督学习-Unsupervised-Learning"><a href="#无监督学习-Unsupervised-Learning" class="headerlink" title="无监督学习(Unsupervised Learning)"></a>无监督学习(Unsupervised Learning)</h3><p>没有试图监督算法而为了给每个输入提供一些正确的答案，相反，为了弄清数据中有什么模式或者结构。</p><p><img src="https://api2.mubu.com/v3/document_image/ab575484-7afb-4726-b350-0697e0a4cf12-12774614.jpg" alt="image"></p><p>1、Clustering-聚类：获取没有标签的数据并尝试将他们自动分组到集群中。例如相似推荐，就是把相似的内容归类后处理</p><p>2、Anomaly detection-异常检测：用于检测异常事件。</p><p>3、Dimensionality reduction-降维：压缩大数据集</p>]]></content>
+        <content type="html"><![CDATA[]]></content>
       
       
       

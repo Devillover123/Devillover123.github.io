@@ -21,7 +21,7 @@
       <link href="/posts/29139/"/>
       <url>/posts/29139/</url>
       
-        <content type="html"><![CDATA[<h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1>]]></content>
+        <content type="html"><![CDATA[<h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1><h2 id="两种主要类型"><a href="#两种主要类型" class="headerlink" title="两种主要类型"></a>两种主要类型</h2><h3 id="监督学习-Supervised-Learning"><a href="#监督学习-Supervised-Learning" class="headerlink" title="监督学习(Supervised Learning)"></a>监督学习(Supervised Learning)</h3><p><img src="https://api2.mubu.com/v3/document_image/3413a5cb-b522-42e8-ae40-3a988a00321d-12774614.jpg" alt="image"></p><p>1、Regression-回归：从无限多种可能输出数字中预测数字。</p><p>2、Classfication-分类：预测类别，可能的输出都是一小组。</p><hr><h3 id="无监督学习-Unsupervised-Learning"><a href="#无监督学习-Unsupervised-Learning" class="headerlink" title="无监督学习(Unsupervised Learning)"></a>无监督学习(Unsupervised Learning)</h3><p>没有试图监督算法而为了给每个输入提供一些正确的答案，相反，为了弄清数据中有什么模式或者结构。</p><p><img src="https://api2.mubu.com/v3/document_image/ab575484-7afb-4726-b350-0697e0a4cf12-12774614.jpg" alt="image"></p><p>1、Clustering-聚类：获取没有标签的数据并尝试将他们自动分组到集群中。例如相似推荐，就是把相似的内容归类后处理</p><p>2、Anomaly detection-异常检测：用于检测异常事件。</p><p>3、Dimensionality reduction-降维：压缩大数据集</p>]]></content>
       
       
       

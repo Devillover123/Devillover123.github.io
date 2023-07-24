@@ -47,3 +47,6 @@ function changeColor() {
 
 // 开启计时器
 window.onload = setInterval(changeColor, 1200);
+
+
+

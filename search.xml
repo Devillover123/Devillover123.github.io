@@ -5,6 +5,31 @@
     
     <entry>
       <title>机器学习</title>
+      <link href="/posts/29142/"/>
+      <url>/posts/29142/</url>
+      
+        <content type="html"><![CDATA[<h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a><p align="center">机器学习</p></h1><h2 id="1-过拟合问题"><a href="#1-过拟合问题" class="headerlink" title="1.过拟合问题"></a>1.过拟合问题</h2><ul><li>模型对训练数据 <strong>欠拟合</strong> (  <em><strong>underfit</strong></em>  ) or 算法具有 <strong>高偏差</strong>（ <em><strong>high bias</strong></em> ）</li><li>希望  <em><strong>generalization</strong></em> :  <strong>泛化</strong></li><li><strong>过拟合</strong>（ <em><strong>overfitting</strong></em> ） or  <strong>高方差</strong>（ <em><strong>high variance</strong></em> ）</li></ul><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202307291641912.webp" alt="image-20230729164112592"></p><hr><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202307291650553.webp" alt="image-20230729165008193"></p><h2 id="2-解决过拟合问题"><a href="#2-解决过拟合问题" class="headerlink" title="2.解决过拟合问题"></a>2.解决过拟合问题</h2><ol><li>收集更多的训练集数据。</li><li>不要使用太多特征，使用特征的子集即选择一部分最合适的特征。</li><li><em><strong>Regularization</strong></em>  : 正则化</li></ol><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202307291657447.webp" alt="image-20230729165758247"></p><hr><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202307291658119.webp" alt="image-20230729165852938"></p><h2 id="3-正则化"><a href="#3-正则化" class="headerlink" title="3.正则化"></a>3.正则化</h2><ul><li><p>正则化是一种更<strong>温和地减少某些特征影响</strong>的方法，而不像彻底消除它那样严厉。</p></li><li><p>正则化的作用是<strong>鼓励学习算法缩小参数值</strong>，而不是把参数变为0。</p></li></ul><p>基于正则化为学习算法设计的代价函数，通过调整代价函数来调整参数。</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202307291711733.webp" alt="image-20230729171147458"></p><p><strong>正则化的典型实现方式是惩罚所有的特征，惩罚所有的 <em>w</em> 参数</strong>。最后一项可以忽略。</p><ul><li><em><strong>λ</strong></em> 设置为0，则根本没有使用正则化项。</li><li><em><strong>λ</strong></em> 设置非常大，参数非常接近0，例如对于线性回归模型则   <em><strong>f&#x3D;b</strong></em>   ，拟合水平直线，欠拟合。</li></ul><h2 id="4-用于线性回归的正则方法"><a href="#4-用于线性回归的正则方法" class="headerlink" title="4.用于线性回归的正则方法"></a>4.用于线性回归的正则方法</h2><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202307292206887.webp" alt="image-20230729220649628"></p><blockquote><p><strong>注意：正则化项求偏导后无求和符号。</strong></p><p>求导是对某一项的参数求导，此时其他参数为常数。</p></blockquote><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202307292212627.webp" alt="image-20230729221220333"></p><h3 id="高数"><a href="#高数" class="headerlink" title="高数"></a><p align="center">高数</p></h3><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202307292217945.webp" alt="image-20230729221710700"></p><h2 id="5-用于逻辑回归的正则化方法"><a href="#5-用于逻辑回归的正则化方法" class="headerlink" title="5.用于逻辑回归的正则化方法"></a>5.用于逻辑回归的正则化方法</h2><p><strong><p align="center">正则化逻辑与线性回归相似</p></strong></p><p>修改代价函数实现正则化：<img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202307292222803.webp" alt="image-20230729222206533"></p><hr><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202307292224550.webp" alt="image-20230729222403346"></p><p><strong>完全相同的方程，除了   <em>f</em>   的定义不再是线性函数，而是应用于   <em>z</em>   的逻辑函数。</strong></p><p>参考代码如下：</p><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 马上学</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202307292229255.webp" alt="image-20230729222925905"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 机器学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Machine learning </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>机器学习</title>
       <link href="/posts/29141/"/>
       <url>/posts/29141/</url>
       
@@ -20,7 +45,7 @@
       
         <tags>
             
-            <tag> 标签1 </tag>
+            <tag> Machine learning </tag>
             
         </tags>
       
@@ -45,7 +70,7 @@
       
         <tags>
             
-            <tag> 标签1 </tag>
+            <tag> Machine learning </tag>
             
         </tags>
       
@@ -70,7 +95,7 @@
       
         <tags>
             
-            <tag> 标签1 </tag>
+            <tag> Machine learning </tag>
             
         </tags>
       
@@ -98,37 +123,12 @@
     
     
     <entry>
-      <title>机器学习</title>
-      <link href="/posts/29142/"/>
-      <url>/posts/29142/</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-      
-      <categories>
-          
-          <category> 机器学习 </category>
-          
-      </categories>
-      
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>机器学习</title>
+      <title></title>
       <link href="/posts/29144/"/>
       <url>/posts/29144/</url>
       
         <content type="html"><![CDATA[]]></content>
       
-      
-      <categories>
-          
-          <category> Al干货 </category>
-          
-      </categories>
       
       
     </entry>

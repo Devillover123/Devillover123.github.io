@@ -5,6 +5,31 @@
     
     <entry>
       <title>深度学习</title>
+      <link href="/posts/29145/"/>
+      <url>/posts/29145/</url>
+      
+        <content type="html"><![CDATA[<h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a><p align="center">深度学习</p></h1><h2 id="1、单个网络层上的前向传播"><a href="#1、单个网络层上的前向传播" class="headerlink" title="1、单个网络层上的前向传播"></a>1、单个网络层上的前向传播</h2><p>​阅读代码，理解内容，继续使用咖啡烘培模型</p><p>​<strong>前向传播参数随机初始化，后面进行反向传播调参修正。</strong></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308061730483.webp" alt="image-20230806173016220"></p><blockquote><p>​w2_1 &#x3D; np.array ( [-7，8，<strong>1</strong>] )        #应该为3个元素的 1D</p><p>​               –</p><p>​a2_1 &#x3D; sigmod ( z2_1 )   # z2_1</p></blockquote><p>​</p><p>​这就是如何使用<code>python</code>和<code>numpy</code>实现前向传播。</p><h2 id="2、前向传播的一般实现"><a href="#2、前向传播的一般实现" class="headerlink" title="2、前向传播的一般实现"></a>2、前向传播的一般实现</h2><p>​<img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308062044889.webp" alt="image-20230806204441625"></p><p>​</p><blockquote><ol><li><p><code>units = W.shape[1]</code>: 获取权重矩阵 <code>W</code> 的输出维度（神经元数量），保存在变量 <code>units</code> 中。</p><p>通过将 <code>w.shape[1]</code> 赋值给 <code>units</code>，你可以根据权重矩阵 <code>w</code> 的形状自动设置神经网络层的输出维度，使其与权重矩阵的列数相匹配。这样在构建神经网络时就不需要手动指定输出维度，更加方便和灵活。</p></li><li><p><code>a_out = np.zeros(units)</code>: 创建一个一维数组 <code>a_out</code>，用于保存输出结果，初始值全部设为 0。</p></li><li><p><code>for j in range(units):</code>: 遍历每个输出神经元的索引 <code>j</code>。</p></li><li><p><code>w = W[:, j]</code>: 从权重矩阵 <code>W</code> 中获取第 <code>j</code> 列，即与第 <code>j</code> 个神经元连接的权重向量。</p></li><li><p><code>z = np.dot(w, a_in) + b[j]</code>: 计算加权输入 <code>z</code>，使用权重向量 <code>w</code> 与输入向量 <code>a_in</code> 的点积，并加上对应的偏置 <code>b[j]</code>。</p></li><li><p><code>a_out[j] = g(z)</code>: 将加权输入 <code>z</code> 经过激活函数 <code>g</code> 进行非线性变换，得到第 <code>j</code> 个输出神经元的输出值，并保存在 <code>a_out[j]</code> 中。</p></li><li><p>循环结束后，<code>a_out</code> 中存储了整个层的输出结果，即一个由 <code>units</code> 个元素组成的一维数组，表示该层所有神经元的输出。</p></li></ol></blockquote><p>​</p><p>​后面的代码时将几个隐藏层串在一起，以便在神经网络中实现前向传播。</p><p>​<strong>这里使用   W  ,因为根据线性代数，矩阵使用大写字母，小写字母代表向量和标量。</strong></p><p>​       这就是底层工作原理， <code>在实验室中练习。</code></p><hr><p>​神经网络与AI、AGI、通用人工智能之间是什么关系？</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308062119965.webp" alt="image-20230806211930637"></p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Deeplearning </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>深度学习</title>
       <link href="/posts/29144/"/>
       <url>/posts/29144/</url>
       

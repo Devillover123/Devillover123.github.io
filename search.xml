@@ -5,6 +5,31 @@
     
     <entry>
       <title>深度学习</title>
+      <link href="/posts/29146/"/>
+      <url>/posts/29146/</url>
+      
+        <content type="html"><![CDATA[<h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a><p align="center">深度学习</p></h1><h2 id="1、Tensorflow实现"><a href="#1、Tensorflow实现" class="headerlink" title="1、Tensorflow实现"></a>1、Tensorflow实现</h2><ul><li><h3 id="回忆：回到识别手写数字0和1的例子："><a href="#回忆：回到识别手写数字0和1的例子：" class="headerlink" title="回忆：回到识别手写数字0和1的例子："></a>回忆：回到识别手写数字0和1的例子：</h3></li></ul><ol><li><strong>指定模型</strong>，设置隐藏层，神经网络单元，激活函数，如何计算推理；</li><li><strong>编译模型</strong>，指定损失函数（图为分类交叉熵）；</li><li><strong>训练模型</strong>，调用<code>fit</code>函数，使用指定代价函数的损失来拟合指定数据集；</li></ol><p>​<code>epochs</code>表示学习梯度下降等算法设置的<strong>步数</strong></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308102214269.webp" alt="image-20230810221419946"></p><ul><li><h3 id="模型训练细节："><a href="#模型训练细节：" class="headerlink" title="模型训练细节："></a>模型训练细节：</h3></li></ul><ol><li>给定输入，给定参数，计算输出；</li><li>指定损失和代价；</li><li>梯度下降，最小化逻辑回归的代价函数。</li></ol><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308111050156.webp" alt="image-20230811105040880"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308111055621.webp" alt="image-20230811105550350"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308111058327.webp" alt="image-20230811105832078"></p><p>​keras中有很多损失函数，但是恐怕只有chatgpt能记得它有哪些。</p><p>​回归：MSE，均方误差</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308111104515.webp" alt="image-20230811110447328"></p><p>​TensorFlow所做的，实际上也是神经网络训练的标准，是使用一种称为反向传播（BP）的算法来计算这些偏导数项，调用<code>fit</code>函数。</p><h2 id="2、激活函数的替代方案"><a href="#2、激活函数的替代方案" class="headerlink" title="2、激活函数的替代方案"></a>2、激活函数的替代方案</h2><ul><li><h3 id="Sigmoid激活函数的替代方案"><a href="#Sigmoid激活函数的替代方案" class="headerlink" title="Sigmoid激活函数的替代方案"></a>Sigmoid激活函数的替代方案<img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308111517810.webp" alt="image-20230811151730550"></h3></li></ul><blockquote><p>线性整流函数（Rectified Linear Unit，简称<strong>ReLU</strong>）是一种常用的人工神经网络激活函数，通常用于神经网络的隐藏层。ReLU 函数定义如下：</p><p>​<strong><em>f</em>(<em>x</em>)&#x3D;max(0,<em>x</em>)</strong></p><p>其中，<em><strong>x</strong></em> 是输入值，而 <em><strong>f(x)</strong></em> 则是输出值。换句话说，当 <em><strong>x</strong></em> 大于等于零时，ReLU 函数返回 <em><strong>x</strong></em>；当 <em><strong>x</strong></em>小于零时，返回零。这就是为什么它被称为线性整流函数，因为它将负数的部分截断为零，而保留正数部分不变。</p></blockquote><ul><li><h3 id="如何选择激活函数？"><a href="#如何选择激活函数？" class="headerlink" title="如何选择激活函数？"></a>如何选择激活函数？</h3></li></ul><p>​<code>针对目标 y 选择:</code></p><ol><li>对于二分类问题，<em><strong>y</strong></em>   分为两种，可以选择   <em><strong>sigmiod</strong></em>   函数。</li><li>对于预测股票价格如何变化的问题，<em><strong>y</strong></em>   可正可负，可以选择线性激活函数。</li><li>对于预测房屋价格，<em><strong>y</strong></em>   为非负，选择   <em><strong>ReLU</strong></em>   函数。</li></ol><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308111533834.webp" alt="image-20230811153329560"></p><p>​现如今，隐藏层几乎都是用  <em><strong>ReLU</strong></em>  。</p><blockquote><p>  <em><strong>ReLU</strong></em> 在大多数情况下都是更优的选择，因为它具有更好的计算效率、训练速度和收敛性能，而且通常不容易遇到梯度消失问题。然而，  <em><strong>ReLU</strong></em> 也有一些问题，比如神经元死亡问题，可能需要通过使用其他激活函数的变体来解决。在特定情况下，如循环神经网络中，   <em><strong>sigmiod</strong></em>   仍然可能有一定的用途。最终的选择应该考虑到具体问题和网络结构的需求。</p></blockquote><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308111554152.webp" alt="image-20230811155359937"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308111603587.webp" alt="image-20230811160307343"></p><blockquote><p>将隐藏层使用 ReLU 激活函数，而输出层使用 Sigmoid 激活函数是一种常见的组合，适用于许多机器学习和深度学习任务，尤其是二元分类问题。这种组合在实际应用中很常见，有一些优点和适用场景：</p><ol><li><strong>隐藏层使用 ReLU</strong>：<ul><li>ReLU 激活函数在正值部分保持线性关系，对梯度消失问题有一定的缓解作用，因此通常用于隐藏层。</li><li>ReLU 是计算高效的激活函数，对于深层神经网络具有加速训练的效果。</li></ul></li><li><strong>输出层使用 Sigmoid</strong>：<ul><li>Sigmoid 激活函数将输出映射到 (0, 1) 的范围内，非常适用于表示概率值，尤其是二元分类问题的概率预测。</li><li>对于输出层使用 Sigmoid，可以将网络的输出解释为样本属于某一类的概率。</li></ul></li></ol></blockquote><ul><li><h3 id="为什么模型需要激活函数？"><a href="#为什么模型需要激活函数？" class="headerlink" title="为什么模型需要激活函数？"></a>为什么模型需要激活函数？</h3></li></ul><p>​需求检测示例：</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308112111767.webp" alt="image-20230811211151453"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308112112628.webp" alt="image-20230811211215382"></p><p>​线性函数的线性函数，还是线性函数</p><blockquote><p>激活函数在神经网络中扮演着重要的角色，它们引入非线性变换，使得网络能够捕捉复杂的模式和关系，从而提高网络的表达能力和性能。以下是一些关键原因，解释了为什么要使用激活函数：</p><ol><li><strong>引入非线性性</strong>： 神经网络的堆叠层本质上是一系列线性变换，如果没有激活函数，多个线性层的组合仍然只能表示线性关系。激活函数引入非线性性，使得网络可以对输入数据进行非线性变换，从而更好地捕捉数据中的复杂模式和特征。</li><li><strong>增强网络的表达能力</strong>： 激活函数允许神经网络模型更好地拟合各种不同的函数，包括非线性函数。这使得神经网络能够处理各种复杂的任务，如图像识别、自然语言处理等，从而提高网络的表达能力。</li><li><strong>解决线性组合的问题</strong>： 激活函数将输入的线性组合转化为非线性输出。这在处理数据时非常关键，因为现实世界中的数据通常是非线性的。激活函数能够让网络学习更加复杂的数据变换和模式。</li><li><strong>实现决策边界</strong>： 在分类问题中，激活函数可以帮助网络学习到适当的决策边界，从而正确地分类不同类别的样本。这对于图像分类、情感分析等任务非常重要。</li><li><strong>引入稀疏激活性</strong>： 一些激活函数（如 ReLU）可以在激活值为零时产生稀疏激活性，即部分神经元保持非激活状态。这有助于网络进行特征选择，减少冗余信息，提高模型的泛化能力。</li><li><strong>缓解梯度消失问题</strong>： 激活函数的非线性性质有助于缓解梯度消失问题。某些激活函数（如 ReLU）在正值部分具有常数梯度，有助于梯度在反向传播时保持一定的大小，避免梯度逐渐减小。</li></ol><p>综上所述，激活函数是神经网络中不可或缺的部分，它们赋予网络非线性能力，使得网络能够处理复杂的问题和数据。通过适当选择和组合激活函数，可以提高神经网络的性能、泛化能力和训练效果。</p></blockquote>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Deeplearning </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>深度学习</title>
       <link href="/posts/29145/"/>
       <url>/posts/29145/</url>
       

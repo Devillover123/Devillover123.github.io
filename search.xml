@@ -5,6 +5,56 @@
     
     <entry>
       <title>深度学习</title>
+      <link href="/posts/29148/"/>
+      <url>/posts/29148/</url>
+      
+        <content type="html"><![CDATA[<h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a><p align="center">深度学习</p></h1><h2 id="高级优化方法"><a href="#高级优化方法" class="headerlink" title="高级优化方法"></a>高级优化方法</h2><p>​<code>比梯度下降更快的训练神经网络</code></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308131725457.webp" alt="image-20230813172540182"></p><p>​Adam（Adaptive Moment Estimation）是一种用于优化神经网络和深度学习模型训练的优化算法。它结合了随机梯度下降（SGD）的优点和<strong>自适应学习率</strong>方法，旨在提供更快的收敛速度和更稳定的训练过程。</p><p>​Adam算法的工作原理如下：</p><ol><li><strong>梯度计算</strong>：在每个训练批次中，计算模型参数关于损失函数的梯度，以了解参数如何影响损失。</li><li><strong>一阶矩估计（均值）</strong>：Adam维护了每个模型参数的指数移动平均梯度，称为一阶矩估计或梯度的均值。这有助于捕捉梯度的整体趋势。</li><li><strong>二阶矩估计（方差）</strong>：类似地，Adam还维护了每个参数的指数移动平均平方梯度，称为二阶矩估计或梯度的方差。这有助于估计参数更新的变化幅度。</li><li><strong>学习率调整</strong>：Adam根据一阶矩估计和二阶矩估计对每个参数的更新幅度进行调整。学习率被自适应地缩放，从而在不同参数和时间步骤上提供更好的平衡。</li><li><strong>参数更新</strong>：使用调整后的学习率，Adam更新模型参数，以减少损失函数。</li></ol><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308131732346.webp" alt="image-20230813173225176"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308131733345.webp" alt="image-20230813173310075"></p><p>​<strong>选择Adam优化器：</strong> 在实例化神经网络模型时，选择Adam作为优化器。这可以在许多深度学习框架中通过一行代码来完成。</p><h3 id="其他的网络层类型"><a href="#其他的网络层类型" class="headerlink" title="其他的网络层类型"></a>其他的网络层类型</h3><h3 id="密集层"><a href="#密集层" class="headerlink" title="密集层"></a>密集层</h3><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308132000365.webp" alt="image-20230813200009101"></p><p>​密集层（Dense Layer），也被称为全连接层（Fully Connected Layer），是神经网络中的一个基本构建模块，尤其在前馈神经网络和人工神经网络中常见。它是一种层，其中该层中的每个神经元（或节点）与前一层和后一层中的每个神经元都相连接。</p><p>​在密集层中，每个神经元从前一层的所有神经元接收输入，并产生一个输出，该输出传递给下一层中的所有神经元。密集层中每个神经元的输出是通过对其输入进行加权求和，然后应用激活函数来计算的。</p><figure class="highlight scss"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">输出 = 激活函数(加权求和(输入) + 偏置)</span><br></pre></td></tr></table></figure><p>​密集层中神经元的数量和激活函数的选择通常由神经网络的架构和特定问题的要求决定。通过训练过程中调整权重和偏置，密集层用于学习数据中的复杂模式和关系。密集层的参数（权重和偏置）通过梯度下降等优化技术来学习。</p><p>​在神经网络架构中，密集层通常与其他类型的层一起堆叠，例如卷积层（用于处理像素排列的数据，如图像）或循环层（用于处理序列数据）。这种层类型在将输入数据转换为用于进行预测或分类的高级表示方面起着关键作用。</p><h3 id="卷积层"><a href="#卷积层" class="headerlink" title="卷积层"></a>卷积层</h3><p>​卷积层（Convolutional Layer）是神经网络中的一种重要层，主要用于处理具有<strong>网格状结构（如图像）</strong>的数据。卷积层通过使用卷积操作来从输入数据中提取特征，并且在图像处理和计算机视觉任务中取得了巨大的成功。</p><p>​卷积操作是一种数学运算，通过在输入数据上滑动一个称为<strong>卷积核（或滤波器）</strong>的小窗口，将窗口中的数据与<strong>卷积核的权重</strong>进行逐元素相乘，然后将结果相加，最终生成输出的一个值。通过在输入数据的不同位置应用卷积操作，卷积层可以捕获输入数据的局部特征，如边缘、纹理等。</p><blockquote><p>卷积层的主要特点包括：</p><ol><li><strong>权值共享</strong>：卷积层中的卷积核在整个输入数据上共享相同的权重。这导致卷积层具有对平移不变性，即模型可以识别相同特征的不同位置。</li><li><strong>局部连接</strong>：每个卷积核仅与输入数据的一小部分区域连接，从而减少了参数数量，降低了计算成本。</li><li><strong>池化层</strong>：卷积层之后通常会加入池化层，用于减少特征图的尺寸，并增强模型对平移和尺度变化的鲁棒性。</li><li><strong>多通道输入与输出</strong>：卷积层可以处理多通道的输入数据（例如彩色图像的RGB通道），并且可以产生多个输出通道的特征图。</li></ol><p>卷积神经网络（CNNs）是使用卷积层作为主要组件的深度学习模型，在图像识别、物体检测、语义分割等计算机视觉任务中表现出色。通过层层堆叠卷积层、池化层和全连接层，CNNs能够学习到数据的多层次抽象特征，从而实现高效的特征提取和模式识别。</p></blockquote><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308132007771.webp" alt="image-20230813200725547"></p><p>​每个神经元只查看部分像素，在卷积神经网络（CNN）中，让神经元只查看部分像素而不是全部像素有几个重要的原因：</p><ol><li><strong>减少参数数量，加快计算速度：</strong> 图像通常非常大，如果每个神经元都连接到整个图像的每个像素，网络的参数数量会变得极其庞大，导致计算和内存开销巨大。通过让神经元只查看部分像素，可以大大减少参数数量，从而使网络更轻量化且更容易训练，也不太容易过拟合。</li><li><strong>局部特征提取：</strong> 图像中的信息通常是局部相关的，即相邻区域的像素之间存在相关性。通过让神经元只查看部分像素，卷积神经网络可以更有效地捕获图像的局部特征，如边缘、纹理等。这有助于提取更有意义的特征并降低不相关信息的影响。</li><li><strong>平移不变性：</strong> 图像中的特征通常在不同位置都有出现，但位置可能不同。通过使用卷积操作，卷积神经网络可以实现平移不变性，即学习到的特征在图像中的不同位置都能够被识别，而不需要重新训练。</li><li><strong>稀疏连接：</strong> 让神经元只连接到局部区域的像素可以视为一种稀疏连接。稀疏连接有助于减少计算复杂性，使神经网络能够更高效地处理大规模输入数据。</li></ol><p>​<strong>总之，让神经元只查看部分像素而不是全部像素是为了降低计算和内存开销、捕获局部特征、实现平移不变性以及提高网络的有效性。这些策略在卷积神经网络的设计中起到了至关重要的作用，使其能够更好地处理图像数据并在计算机视觉任务中取得优异的性能。</strong></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/image-20230813201436920.webp" alt="image-20230813201436920"></p><p>​使用卷积神经网络（CNN）进行心电图（EKG信号）的分类是一个常见的任务，可以用于自动识别不同心脏疾病、心律失常等。</p><p>​第一个卷积层的神经元都是只查看部分EKG信号，隐藏层第二层也可以是卷积层，同理只查看部分激活，最后是一个sigmoid单元的输出层，以便对是否有心脏病进行二分类。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Deeplearning </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>深度学习</title>
+      <link href="/posts/29147/"/>
+      <url>/posts/29147/</url>
+      
+        <content type="html"><![CDATA[<h1 id="深度学习"><a href="#深度学习" class="headerlink" title="深度学习"></a><p align="center">深度学习</p></h1><h2 id="多分类"><a href="#多分类" class="headerlink" title="多分类"></a>多分类</h2><h3 id="Softmax"><a href="#Softmax" class="headerlink" title="Softmax"></a><strong>Softmax</strong></h3><p>​（软最大值）是一种在机器学习和神经网络中经常使用的数学函数，特别是在分类任务的上下文中。<strong>它用于将一组实数向量转换为概率分布</strong>，其中向量中的每个元素都被转换为介于 0 和 1 之间的值，表示该元素是最可能的选择的概率。</p><p>![image-20230812222419537](<a href="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img">https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img</a> &#x2F;202308122224763.webp)</p><p>​Softmax 函数以任意实数向量作为输入，并计算向量中每个元素 <em>x</em><sub> <em>i</em> </sub> 的如下值：<br>$$<br>softmax(x_i)&#x3D;\frac {e^{x_i}}  {∑_{j&#x3D;1}^N e^{x_j}}<br>$$<br>​这里：</p><ul><li><em>N</em> 是输入向量中的元素总数。</li><li><em>e</em> 是自然对数的底数，即欧拉数。</li><li><em>x</em><sub> <em>i</em> </sub> 是输入向量的第 <em>i</em> 个元素。</li></ul><p>​Softmax 函数对输入向量的每个元素进行指数化，然后通过将每个指数化值除以向量中所有指数化值的和来进行归一化。这种归一化确保输出值在 [0, 1] 范围内，并且它们的总和为 1，形成一个有效的概率分布。</p><p>​Softmax 经常用于神经网络的输出层，用于多类分类任务。给定网络产生的原始分数（logits），Softmax 函数将这些分数转换为不同类别上的概率分布，从而更容易解释和比较模型的预测结果。</p><p>​从数学上讲，Softmax 函数放大了输入向量中元素之间的差异，给予较大值更多的权重，抑制较小值。因此，输入向量中的最大值将主导结果概率，成为最可能的类别选择。</p><p>​Softmax 具有一些特性：</p><ol><li>由于指数化步骤，它对异常值比较敏感。</li><li>它是单调递增函数，因此较高的输入值将对应于较高的概率。</li><li>它是可微分的，适用于使用基于梯度的优化方法来训练神经网络。</li></ol><h3 id="Cost"><a href="#Cost" class="headerlink" title="Cost"></a>Cost</h3><p>​<img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308122234613.webp" alt="image-20230812223452347"></p><p>​在机器学习和神经网络中，Softmax 通常与交叉熵损失（Cross-Entropy Loss）一起使用作为代价函数，特别是在多类别分类问题中。Softmax 用于将模型的原始分数转换为概率分布，而交叉熵损失用于衡量模型的预测与真实标签之间的差异。</p><p>​假设有一个具有 <em>C</em> 个类别的分类问题，每个类别用一个指标 <em><strong>y<sub> i </sub></strong></em> 表示，其中 <em><strong>i</strong></em> 是类别的索引。此外，假设模型的输出经过 Softmax 函数处理后得到的概率分布为 ***p<sub> i </sub>***，表示模型预测属于类别 <em><strong>p<sub> i </sub></strong></em> 的概率。</p><p>​交叉熵损失（Cross-Entropy Loss）用于衡量模型的预测与真实标签之间的差异，计算方式如下：<br>$$<br>L &#x3D; -∑_{i&#x3D;1}^{C} y_i * log(p_i)<br>$$<br>​这里：</p><ul><li><em><strong>y<sub> i </sub></strong></em> 是真实标签中类别 <em><strong>i</strong></em> 的指标，通常是一个 0 或 1。</li><li><em><strong>p<sub> i </sub></strong></em> 是模型预测属于类别 <em><strong>i</strong></em> 的概率，由 Softmax 函数计算得出。</li></ul><p>​交叉熵损失可以看作是模型预测分布与真实分布之间的差异的度量。在分类问题中，真实分布中只有一个类别的指标为 1，其他为 0，因此损失函数只关注模型对正确类别的预测。</p><p>​通过最小化交叉熵损失，模型将被鼓励更准确地预测样本的类别。训练过程中，优化算法（如梯度下降）会调整模型的参数，使损失逐渐减小，从而提升模型的分类性能。</p><h2 id="神经网络的Softmax输出"><a href="#神经网络的Softmax输出" class="headerlink" title="神经网络的Softmax输出"></a>神经网络的Softmax输出</h2><p>​<img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308131019403.webp" alt="image-20230813101904158"></p><p>当你在 TensorFlow 中使用 <code>softmax</code> 激活函数和 <code>SparseCategoricalCrossentropy</code> 损失函数时，你通常会按照以下步骤进行：</p><ol><li>定义模型的输出层，并在输出层使用 <code>softmax</code> 激活函数，以将原始分数转换为概率分布。</li><li>定义损失函数为 <code>SparseCategoricalCrossentropy</code>，并将 logits（原始分数）作为参数传递给它，而不需要显式地进行 softmax 转换。</li></ol><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308131023257.webp" alt="image-20230813102316988"></p><h2 id="Softmax的改进实现"><a href="#Softmax的改进实现" class="headerlink" title="Softmax的改进实现"></a>Softmax的改进实现</h2><p>![image-20230813105537197](<a href="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img">https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img</a> &#x2F;202308131055449.webp)如果您将输出层的激活函数更改为线性（linear)，那么您应该在使用 <code>SparseCategoricalCrossentropy</code> 损失函数时，将参数 <code>from_logits=True</code> 设置为确保正确的损失计算。</p><p>​在神经网络中，将输出层的激活函数设置为线性意味着网络输出不再是经过 softmax 转换的概率分布，而是原始分数（logits）。这时，为了计算交叉熵损失，您需要在损失函数中执行 softmax 转换，以将 logits 转换为概率分布。</p><p>​<strong>这样做会确保在计算损失函数时，将 logits 转换为概率分布，从而使损失计算更稳定，避免数值不稳定性问题，并且可以更好地优化模型以逼近真实标签分布。</strong></p><p>​<code>**从概念上讲，两种代码做的是同一件事，但后者数字更为准确。**</code></p><hr><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308131104759.webp" alt="image-20230813110435532"></p><p>​现在只有一个细节，那就是我们现在已经将神经网络更改为使用<strong>线性激活函数</strong>而不是softmax激活函数。神经网络的最后一层不再输出 a<sub> 1</sub><del>a<sub> 10</sub>，而是 z<sub> 1</sub></del>z<sub> 10</sub> </p><h3 id="逻辑回归的改进"><a href="#逻辑回归的改进" class="headerlink" title="逻辑回归的改进:"></a>逻辑回归的改进:</h3><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308131110775.webp" alt="image-20230813111053537"></p><h2 id="多标签分类问题"><a href="#多标签分类问题" class="headerlink" title="多标签分类问题"></a>多标签分类问题</h2><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308131619390.webp" alt="image-20230813161953110"></p><p>​多标签分类是一种机器学习任务，其中算法为输入实例分配多个标签。在传统的二元分类中，一个实例被分配到两个类别中的一个（例如，垃圾邮件或非垃圾邮件）。在多标签分类中，一个实例可以与多个类别同时关联。</p><p>​<img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202308131630467.webp" alt="image-20230813163012256"></p><p>​</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> 深度学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Deeplearning </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>深度学习</title>
       <link href="/posts/29146/"/>
       <url>/posts/29146/</url>
       

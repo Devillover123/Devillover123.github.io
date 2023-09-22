@@ -4,7 +4,7 @@
   
     
     <entry>
-      <title>无监督学习</title>
+      <title>聚类、异常检测</title>
       <link href="/posts/29154/"/>
       <url>/posts/29154/</url>
       
@@ -79,7 +79,7 @@
     
     
     <entry>
-      <title>机器学习</title>
+      <title>机器学习开发的迭代过程</title>
       <link href="/posts/29151/"/>
       <url>/posts/29151/</url>
       
@@ -129,11 +129,11 @@
     
     
     <entry>
-      <title>机器学习</title>
+      <title>模型的评估</title>
       <link href="/posts/29149/"/>
       <url>/posts/29149/</url>
       
-        <content type="html"><![CDATA[<h1 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a><p align="center">下一步</p></h1><h2 id="模型诊断"><a href="#模型诊断" class="headerlink" title="模型诊断"></a>模型诊断</h2><p>​在机器学习中，模型诊断是指通过分析模型的性能、预测结果以及其他相关指标来评估模型的质量和表现。这有助于发现模型中的问题、改进模型并了解其如何作出预测。以下是一些常见的机器学习诊断方法和技术：</p><ol><li><strong>性能指标分析</strong>：分析模型的性能指标，如准确率、精确率、召回率、F1分数等，以了解模型在不同类别上的表现如何。</li><li><strong>学习曲线分析</strong>：绘制模型在训练集和验证集上的学习曲线，以检查模型是否过拟合或欠拟合。</li><li><strong>特征重要性分析</strong>：通过分析模型所学习的特征权重，可以了解哪些特征对模型的预测贡献较大。</li><li><strong>错误分析</strong>：分析模型在预测中犯错的情况，了解模型常见的错误类型和原因。</li><li><strong>可视化分析</strong>：利用可视化工具展示模型的预测结果、决策边界等，帮助理解模型的工作原理。</li><li><strong>交叉验证</strong>：通过交叉验证方法来估计模型在未见数据上的性能，以避免过度拟合。</li><li><strong>模型比较</strong>：将不同模型的性能进行比较，以确定哪个模型在特定任务上表现最佳。</li><li><strong>超参数调整</strong>：调整模型的超参数，例如学习率、正则化参数等，以优化模型的性能。</li><li><strong>集成方法分析</strong>：分析集成方法（如随机森林、梯度提升等）的预测结果，了解它们如何结合多个基模型。</li><li><strong>时间序列分析</strong>：对于时间序列数据，可以分析模型在不同时间点上的预测表现，探索模型对趋势和季节性的捕捉能力。</li></ol><p>​        总之，机器学习诊断是一个多方面的过程，涉及对模型、数据和结果的深入分析，以便更好地理解模型的行为并做出必要的改进。</p><h2 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h2><ul><li><p>获取一个数据集并将其分为<strong>训练集</strong>和<strong>测试集</strong>，可以系统的评估学习成果如何。</p></li><li><p>测试集和训练集的均方误差。（不包括正则化项）通常对计算机有用的是训练误差，它是衡量学习算法在训练集上的表现。</p></li></ul><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309072026399.webp" alt="image-20230907202650328"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309072035534.webp" alt="image-20230907203521249"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309072104582.webp" alt="image-20230907210404387"></p><p>​    <code>可以在测试集中计算**y_hat**不等于测试集中实际标签的示例分数。</code></p><h2 id="模型选择，交叉评估验证"><a href="#模型选择，交叉评估验证" class="headerlink" title="模型选择，交叉评估验证"></a>模型选择，交叉评估验证</h2><p>​         测试不同的阶数，比较   <em><strong>J_test</strong></em>   大小，得到性能好坏。但<code>**有缺陷。**</code>可能是乐观估计。</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309102109004.webp" alt="image-20230910210906708"></p><p>​        可以将数据分为三个不同的子集：训练集、<strong>交叉验证集</strong>、测试集、</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309102115905.webp" alt="image-20230910211506635"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309102119998.webp" alt="image-20230910211953702"></p><ul><li><p>通常，不包括正则化项。中间这项除了被称为<strong>交叉验证错误</strong>外，通常也简称为<strong>验证错误</strong>。有了这些标准，就可以进行模型选择。</p></li><li><p>在<strong>交叉验证集上</strong>评估这些参数，选择   <em><strong>J_cv</strong></em>  最小的模型。</p></li><li><p>最后，如果想要获取<strong>泛化误差</strong>，再使用测试集计算   <em><strong>J_test</strong></em>   进行操作。</p></li><li><p>相当于两个测试集，cv用来判断项数，测试集用来判断误差。</p><p>​        <code>可以把训练集，验证集合，测试集合想成平时作业，月考，期末考，当你做了作业之后，通过月考成绩去调整平时作业的参数，最后通过期末考测试你这个学习成绩怎么样/</code></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309102211376.webp" alt="image-20230910221121073"></p></li></ul><hr><p>​        它可以自动做出决定，例如为线性回归模型选择什么阶多项式。也可为其他类型的模型进行选择。例如下面的神经网络结构：手写数字模型。</p><p>​        如下为一些不同大小的神经网络，可以使用   <em><strong>J_cv</strong></em>  评估神经网络性能，这是分类问题，最常见的选择是将其计算为<strong>算法错误分类的交叉验证示例的分数。</strong></p><p>​         使用三个模型进行计算，然后取交叉验证误差最低的模型。<strong>如果想要计算泛化误差，</strong>则使用测试集来评估选择的神经网络的性能。</p><p>​        <code>只有在选出一个模型作为最终模型之后。才可以在测试集上进行评估。选择模型或学习算法的过程并不需要查看测试集。</code></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309102232182.webp" alt="image-20230910223223741"></p><p>​        现在已经有了评估学习算法甚至自动选择模型的方法，接下来更深一步研究一些诊断示例。</p><h2 id="通过偏差的方法进行诊断"><a href="#通过偏差的方法进行诊断" class="headerlink" title="通过偏差的方法进行诊断"></a>通过偏差的方法进行诊断</h2><ul><li>高偏差（欠拟合）</li><li>高方差（过拟合）</li><li>诊断算法是否具有高偏差或者高方差的方法是查看算法在训练集和交叉验证集上的性能。看   <em><strong>J_cv</strong></em> 和   <em><strong>J_train</strong></em>   的大小。</li></ul><blockquote><p>中间这个图，   <em><strong>J_train</strong></em>  不太高表明它没有高偏差问题，而   <em><strong>J_cv</strong></em>  并不比   <em><strong>J_train</strong></em>  差很多，这表明它也没有高方差问题。</p></blockquote><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309111540688.webp" alt="image-20230911154042487"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309111643897.webp" alt="image-20230911164308628"></p><blockquote><ul><li>学习算法有高偏差或者欠拟合，关键是  <em><strong>J_train</strong></em>  是否高，如图的左部分，此时  <em><strong>J_cv</strong></em>  与   <em><strong>J_train</strong></em>  很接近。</li><li>高方差或者过拟合，  <em><strong>J_cv</strong></em>  远大于   <em><strong>J_train</strong></em>  ，同时   <em><strong>J_train</strong></em>  可能很低。</li></ul><p>训练神经网络时，<strong>有时</strong>也会看到高偏差和高方差。   <em><strong>J_train</strong></em>  高且   <em><strong>J_cv</strong></em>  远大于   <em><strong>J_train</strong></em>  。可能如小图部分所示，部分数据过拟合，部分欠拟合。</p></blockquote><p>​        <strong><code>高阶多项式在训练次数不够的时候就会既有高偏差和高方差</code></strong></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309111650909.webp" alt="image-20230911165022631"></p><p>​         正则化如何影响学习算法的偏差和方差？更好的理解何时应该使用正则化。</p><h2 id="正则化参数如何影响偏差、方差？"><a href="#正则化参数如何影响偏差、方差？" class="headerlink" title="正则化参数如何影响偏差、方差？"></a>正则化参数如何影响偏差、方差？</h2><p>​        <code>目的：使用交叉验证来为选择一个适合的正则化参数   ***λ***   </code></p><p>​        首先回顾一下正则化参数对模型的影响，以及此时对应的  <em><strong>J_train</strong></em>  和  <em><strong>J_cv</strong></em>  的情况。</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121552461.webp" alt="image-20230912155219136"></p><p>​        按照之前的方法进行尝试   <em><strong>λ</strong></em>   取不同值时，模型参数以及  <em><strong>J_cv</strong></em>  的大小。</p><blockquote><p>左侧过拟合，右侧欠拟合。与上个图像刚好对称。</p></blockquote><p> <img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121611475.webp" alt="image-20230912161149154"></p><h2 id="制定一个用于性能评估的基准"><a href="#制定一个用于性能评估的基准" class="headerlink" title="制定一个用于性能评估的基准"></a>制定一个用于性能评估的基准</h2><ul><li><p>目的：为了判断  <em><strong>J_train</strong></em>  和  <em><strong>J_cv</strong></em>  何谓之高，何谓之低。</p></li><li><p>语音识别运行示例：查看训练误差是否远高于人的表现水平更有用。</p></li><li><p>基准性能水平指的是合理希望学习算法最终达到的误差水平。常见的方法就是衡量人类在这项任务上的表现。也可以根据 <em><strong>baseline</strong></em> 建立基准。</p></li></ul><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121634778.webp" alt="image-20230912163424534"></p><blockquote><p>比较 <em><strong>baseline performance</strong></em> 与  <em><strong>J_train</strong></em>  之间的差距，如果效果差，可能是高偏差。继续比较  <em><strong>J_train</strong></em>   与  <em><strong>J_cv</strong></em>  之间的差距，如果差距很大，可能遇到了高方差问题。</p></blockquote><h2 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h2><p>​        在机器学习中，学习曲线（Learning Curve）是一种可视化工具，用于帮助我们理解模型的性能如何随着训练数据量的增加而变化。学习曲线通常显示了训练数据大小与模型的性能之间的关系。</p><p>学习曲线一般包括两个主要方面的信息：</p><ol><li><strong>训练集性能</strong>：这是指模型在用于训练的数据上的性能表现。通常，随着训练数据量的增加，模型在训练集上的性能会逐渐提高。这是因为更多的数据有助于模型更好地学习数据的模式和特征。训练集性能通常以训练误差（训练集上的损失）来衡量。</li><li><strong>验证集性能</strong>：这是指模型在用于验证的独立数据集上的性能表现。验证集通常用于评估模型的泛化能力，即模型对新数据的适应能力。随着训练数据量的增加，验证集性能可能会出现以下情况：<ul><li>随着数据量的增加，验证集性能逐渐提高，这表明模型的泛化能力在改善。</li><li>随着数据量的增加，验证集性能趋于稳定，这可能表示模型已经充分学习了可用数据的模式。</li><li>验证集性能在训练数据量增加后开始下降，这可能是由于过拟合（Overfitting）导致的，即模型在训练集上表现很好，但在验证集上表现较差。</li></ul></li></ol><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121757190.webp" alt="image-20230912175728901"></p><p>​        <code>如果算法具有高偏差，如果仅仅添加更多的训练数据，不会降低错误率。</code>首先得拟合好，其次增加数据集数量才有用。</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121807204.webp" alt="image-20230912180725889"></p><p>​        高方差和高偏差不同，增加数据集大小可以有助于改善模型性能。</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121817233.webp" alt="image-20230912181714954"></p><h2 id="偏差和方差如何帮助决定下一步要做什么？"><a href="#偏差和方差如何帮助决定下一步要做什么？" class="headerlink" title="偏差和方差如何帮助决定下一步要做什么？"></a>偏差和方差如何帮助决定下一步要做什么？</h2><p>​        以下描述的很清楚了：</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121949024.webp" alt="image-20230912194907612"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121955743.webp" alt="image-20230912195521360"></p><h2 id="神经网络中的方差和偏差"><a href="#神经网络中的方差和偏差" class="headerlink" title="神经网络中的方差和偏差"></a>神经网络中的方差和偏差</h2><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309122006372.webp" alt="image-20230912200611174"></p><p>​        平衡，存在于万物之间。神经网络是我们摆脱了必须权衡偏差和方差的困境。如果神经网络足够大，几乎可以很好地适应训练集。<strong>如下图是神经网络处理偏差的具体方法，也是神经网络如此强大的原因。</strong></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309122015567.webp" alt="image-20230912201550334"></p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">精心涉及的正则化大型网络通常与较小的神经网络一样好甚至更好（这里指的是正则化后的大型神经网络可能没有高方差的问题）。大的神经网络使得过拟合的风险增加，适当的正则化使得神经网络变得卓越，但会使计算量增加。</span><br></pre></td></tr></table></figure><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309122032797.webp" alt="image-20230912203210570"></p>]]></content>
+        <content type="html"><![CDATA[<h1 id="下一步"><a href="#下一步" class="headerlink" title="下一步"></a><p align="center">下一步</p></h1><h2 id="模型诊断"><a href="#模型诊断" class="headerlink" title="模型诊断"></a>模型诊断</h2><p>​在机器学习中，模型诊断是指通过分析模型的性能、预测结果以及其他相关指标来评估模型的质量和表现。这有助于发现模型中的问题、改进模型并了解其如何作出预测。以下是一些常见的机器学习诊断方法和技术：</p><ol><li><strong>性能指标分析</strong>：分析模型的性能指标，如准确率、精确率、召回率、F1分数等，以了解模型在不同类别上的表现如何。</li><li><strong>学习曲线分析</strong>：绘制模型在训练集和验证集上的学习曲线，以检查模型是否过拟合或欠拟合。</li><li><strong>特征重要性分析</strong>：通过分析模型所学习的特征权重，可以了解哪些特征对模型的预测贡献较大。</li><li><strong>错误分析</strong>：分析模型在预测中犯错的情况，了解模型常见的错误类型和原因。</li><li><strong>可视化分析</strong>：利用可视化工具展示模型的预测结果、决策边界等，帮助理解模型的工作原理。</li><li><strong>交叉验证</strong>：通过交叉验证方法来估计模型在未见数据上的性能，以避免过度拟合。</li><li><strong>模型比较</strong>：将不同模型的性能进行比较，以确定哪个模型在特定任务上表现最佳。</li><li><strong>超参数调整</strong>：调整模型的超参数，例如学习率、正则化参数等，以优化模型的性能。</li><li><strong>集成方法分析</strong>：分析集成方法（如随机森林、梯度提升等）的预测结果，了解它们如何结合多个基模型。</li><li><strong>时间序列分析</strong>：对于时间序列数据，可以分析模型在不同时间点上的预测表现，探索模型对趋势和季节性的捕捉能力。</li></ol><p>​        总之，机器学习诊断是一个多方面的过程，涉及对模型、数据和结果的深入分析，以便更好地理解模型的行为并做出必要的改进。</p><h2 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h2><ul><li><p>获取一个数据集并将其分为<strong>训练集</strong>和<strong>测试集</strong>，可以系统的评估学习成果如何。</p></li><li><p>测试集和训练集的均方误差。（不包括正则化项）通常对计算机有用的是训练误差，它是衡量学习算法在训练集上的表现。</p></li></ul><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309072026399.webp" alt="image-20230907202650328"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309072035534.webp" alt="image-20230907203521249"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309072104582.webp" alt="image-20230907210404387"></p><pre><code>    ``可以在测试集中计算**y_hat**不等于测试集中实际标签的示例分数。``</code></pre><h2 id="模型选择，交叉评估验证"><a href="#模型选择，交叉评估验证" class="headerlink" title="模型选择，交叉评估验证"></a>模型选择，交叉评估验证</h2><p>​         测试不同的阶数，比较   <em><strong>J_test</strong></em>   大小，得到性能好坏。但<code>**有缺陷。**</code>可能是乐观估计。</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309102109004.webp" alt="image-20230910210906708"></p><p>​        可以将数据分为三个不同的子集：训练集、<strong>交叉验证集</strong>、测试集、</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309102115905.webp" alt="image-20230910211506635"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309102119998.webp" alt="image-20230910211953702"></p><ul><li><p>通常，不包括正则化项。中间这项除了被称为<strong>交叉验证错误</strong>外，通常也简称为<strong>验证错误</strong>。有了这些标准，就可以进行模型选择。</p></li><li><p>在<strong>交叉验证集上</strong>评估这些参数，选择   <em><strong>J_cv</strong></em>  最小的模型。</p></li><li><p>最后，如果想要获取<strong>泛化误差</strong>，再使用测试集计算   <em><strong>J_test</strong></em>   进行操作。</p></li><li><p>相当于两个测试集，cv用来判断项数，测试集用来判断误差。</p><p>​        <code>可以把训练集，验证集合，测试集合想成平时作业，月考，期末考，当你做了作业之后，通过月考成绩去调整平时作业的参数，最后通过期末考测试你这个学习成绩怎么样/</code></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309102211376.webp" alt="image-20230910221121073"></p></li></ul><hr><p>​        它可以自动做出决定，例如为线性回归模型选择什么阶多项式。也可为其他类型的模型进行选择。例如下面的神经网络结构：手写数字模型。</p><p>​        如下为一些不同大小的神经网络，可以使用   <em><strong>J_cv</strong></em>  评估神经网络性能，这是分类问题，最常见的选择是将其计算为<strong>算法错误分类的交叉验证示例的分数。</strong></p><p>​         使用三个模型进行计算，然后取交叉验证误差最低的模型。<strong>如果想要计算泛化误差，</strong>则使用测试集来评估选择的神经网络的性能。</p><p>​        <code>只有在选出一个模型作为最终模型之后。才可以在测试集上进行评估。选择模型或学习算法的过程并不需要查看测试集。</code></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309102232182.webp" alt="image-20230910223223741"></p><p>​        现在已经有了评估学习算法甚至自动选择模型的方法，接下来更深一步研究一些诊断示例。</p><h2 id="通过偏差的方法进行诊断"><a href="#通过偏差的方法进行诊断" class="headerlink" title="通过偏差的方法进行诊断"></a>通过偏差的方法进行诊断</h2><ul><li>高偏差（欠拟合）</li><li>高方差（过拟合）</li><li>诊断算法是否具有高偏差或者高方差的方法是查看算法在训练集和交叉验证集上的性能。看   <em><strong>J_cv</strong></em> 和   <em><strong>J_train</strong></em>   的大小。</li></ul><blockquote><p>中间这个图，   <em><strong>J_train</strong></em>  不太高表明它没有高偏差问题，而   <em><strong>J_cv</strong></em>  并不比   <em><strong>J_train</strong></em>  差很多，这表明它也没有高方差问题。</p></blockquote><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309111540688.webp" alt="image-20230911154042487"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309111643897.webp" alt="image-20230911164308628"></p><blockquote><ul><li>学习算法有高偏差或者欠拟合，关键是  <em><strong>J_train</strong></em>  是否高，如图的左部分，此时  <em><strong>J_cv</strong></em>  与   <em><strong>J_train</strong></em>  很接近。</li><li>高方差或者过拟合，  <em><strong>J_cv</strong></em>  远大于   <em><strong>J_train</strong></em>  ，同时   <em><strong>J_train</strong></em>  可能很低。</li></ul><p>训练神经网络时，<strong>有时</strong>也会看到高偏差和高方差。   <em><strong>J_train</strong></em>  高且   <em><strong>J_cv</strong></em>  远大于   <em><strong>J_train</strong></em>  。可能如小图部分所示，部分数据过拟合，部分欠拟合。</p></blockquote><p>​        <strong><code>高阶多项式在训练次数不够的时候就会既有高偏差和高方差</code></strong></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309111650909.webp" alt="image-20230911165022631"></p><p>​         正则化如何影响学习算法的偏差和方差？更好的理解何时应该使用正则化。</p><h2 id="正则化参数如何影响偏差、方差？"><a href="#正则化参数如何影响偏差、方差？" class="headerlink" title="正则化参数如何影响偏差、方差？"></a>正则化参数如何影响偏差、方差？</h2><p>​        <code>目的：使用交叉验证来为选择一个适合的正则化参数   ***λ***   </code></p><p>​        首先回顾一下正则化参数对模型的影响，以及此时对应的  <em><strong>J_train</strong></em>  和  <em><strong>J_cv</strong></em>  的情况。</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121552461.webp" alt="image-20230912155219136"></p><p>​        按照之前的方法进行尝试   <em><strong>λ</strong></em>   取不同值时，模型参数以及  <em><strong>J_cv</strong></em>  的大小。</p><blockquote><p>左侧过拟合，右侧欠拟合。与上个图像刚好对称。</p></blockquote><p> <img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121611475.webp" alt="image-20230912161149154"></p><h2 id="制定一个用于性能评估的基准"><a href="#制定一个用于性能评估的基准" class="headerlink" title="制定一个用于性能评估的基准"></a>制定一个用于性能评估的基准</h2><ul><li><p>目的：为了判断  <em><strong>J_train</strong></em>  和  <em><strong>J_cv</strong></em>  何谓之高，何谓之低。</p></li><li><p>语音识别运行示例：查看训练误差是否远高于人的表现水平更有用。</p></li><li><p>基准性能水平指的是合理希望学习算法最终达到的误差水平。常见的方法就是衡量人类在这项任务上的表现。也可以根据 <em><strong>baseline</strong></em> 建立基准。</p></li></ul><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121634778.webp" alt="image-20230912163424534"></p><blockquote><p>比较 <em><strong>baseline performance</strong></em> 与  <em><strong>J_train</strong></em>  之间的差距，如果效果差，可能是高偏差。继续比较  <em><strong>J_train</strong></em>   与  <em><strong>J_cv</strong></em>  之间的差距，如果差距很大，可能遇到了高方差问题。</p></blockquote><h2 id="学习曲线"><a href="#学习曲线" class="headerlink" title="学习曲线"></a>学习曲线</h2><p>​        在机器学习中，学习曲线（Learning Curve）是一种可视化工具，用于帮助我们理解模型的性能如何随着训练数据量的增加而变化。学习曲线通常显示了训练数据大小与模型的性能之间的关系。</p><p>学习曲线一般包括两个主要方面的信息：</p><ol><li><strong>训练集性能</strong>：这是指模型在用于训练的数据上的性能表现。通常，随着训练数据量的增加，模型在训练集上的性能会逐渐提高。这是因为更多的数据有助于模型更好地学习数据的模式和特征。训练集性能通常以训练误差（训练集上的损失）来衡量。</li><li><strong>验证集性能</strong>：这是指模型在用于验证的独立数据集上的性能表现。验证集通常用于评估模型的泛化能力，即模型对新数据的适应能力。随着训练数据量的增加，验证集性能可能会出现以下情况：<ul><li>随着数据量的增加，验证集性能逐渐提高，这表明模型的泛化能力在改善。</li><li>随着数据量的增加，验证集性能趋于稳定，这可能表示模型已经充分学习了可用数据的模式。</li><li>验证集性能在训练数据量增加后开始下降，这可能是由于过拟合（Overfitting）导致的，即模型在训练集上表现很好，但在验证集上表现较差。</li></ul></li></ol><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121757190.webp" alt="image-20230912175728901"></p><p>​        <code>如果算法具有高偏差，如果仅仅添加更多的训练数据，不会降低错误率。</code>首先得拟合好，其次增加数据集数量才有用。</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121807204.webp" alt="image-20230912180725889"></p><p>​        高方差和高偏差不同，增加数据集大小可以有助于改善模型性能。</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121817233.webp" alt="image-20230912181714954"></p><h2 id="偏差和方差如何帮助决定下一步要做什么？"><a href="#偏差和方差如何帮助决定下一步要做什么？" class="headerlink" title="偏差和方差如何帮助决定下一步要做什么？"></a>偏差和方差如何帮助决定下一步要做什么？</h2><p>​        以下描述的很清楚了：</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121949024.webp" alt="image-20230912194907612"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309121955743.webp" alt="image-20230912195521360"></p><h2 id="神经网络中的方差和偏差"><a href="#神经网络中的方差和偏差" class="headerlink" title="神经网络中的方差和偏差"></a>神经网络中的方差和偏差</h2><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309122006372.webp" alt="image-20230912200611174"></p><p>​        平衡，存在于万物之间。神经网络是我们摆脱了必须权衡偏差和方差的困境。如果神经网络足够大，几乎可以很好地适应训练集。<strong>如下图是神经网络处理偏差的具体方法，也是神经网络如此强大的原因。</strong></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309122015567.webp" alt="image-20230912201550334"></p><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">精心涉及的正则化大型网络通常与较小的神经网络一样好甚至更好（这里指的是正则化后的大型神经网络可能没有高方差的问题）。大的神经网络使得过拟合的风险增加，适当的正则化使得神经网络变得卓越，但会使计算量增加。</span><br></pre></td></tr></table></figure><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309122032797.webp" alt="image-20230912203210570"></p>]]></content>
       
       
       <categories>
@@ -154,7 +154,7 @@
     
     
     <entry>
-      <title>机器学习</title>
+      <title>Adam高级优化算法、反向传播</title>
       <link href="/posts/29148/"/>
       <url>/posts/29148/</url>
       
@@ -179,7 +179,7 @@
     
     
     <entry>
-      <title>机器学习</title>
+      <title>多分类问题</title>
       <link href="/posts/29147/"/>
       <url>/posts/29147/</url>
       
@@ -204,7 +204,7 @@
     
     
     <entry>
-      <title>机器学习</title>
+      <title>神经网络的训练、激活函数的选择</title>
       <link href="/posts/29146/"/>
       <url>/posts/29146/</url>
       
@@ -229,7 +229,7 @@
     
     
     <entry>
-      <title>机器学习</title>
+      <title>前向传播、向量化神经网络</title>
       <link href="/posts/29145/"/>
       <url>/posts/29145/</url>
       
@@ -254,7 +254,7 @@
     
     
     <entry>
-      <title>机器学习</title>
+      <title>搭建神经网络（Tensorflow）</title>
       <link href="/posts/29144/"/>
       <url>/posts/29144/</url>
       
@@ -279,7 +279,7 @@
     
     
     <entry>
-      <title>机器学习</title>
+      <title>过拟合、正则化</title>
       <link href="/posts/29142/"/>
       <url>/posts/29142/</url>
       
@@ -304,7 +304,7 @@
     
     
     <entry>
-      <title>机器学习</title>
+      <title>逻辑回归</title>
       <link href="/posts/29141/"/>
       <url>/posts/29141/</url>
       
@@ -329,7 +329,7 @@
     
     
     <entry>
-      <title>机器学习</title>
+      <title>多元线性回归，矢量化</title>
       <link href="/posts/29140/"/>
       <url>/posts/29140/</url>
       
@@ -354,7 +354,7 @@
     
     
     <entry>
-      <title>机器学习</title>
+      <title>线性回归模型、梯度下降</title>
       <link href="/posts/29139/"/>
       <url>/posts/29139/</url>
       

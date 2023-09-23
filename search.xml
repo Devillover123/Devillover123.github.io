@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>推荐系统</title>
+      <link href="/posts/29155/"/>
+      <url>/posts/29155/</url>
+      
+        <content type="html"><![CDATA[<h1 id="推荐系统"><a href="#推荐系统" class="headerlink" title="推荐系统"></a><p align="center">推荐系统</p></h1><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231349819.webp" alt="image-20230923134955598"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231350367.webp" alt="image-20230923135019057"></p><h2 id="代价函数"><a href="#代价函数" class="headerlink" title="代价函数"></a>代价函数</h2><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231353772.webp" alt="image-20230923135337594"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231356932.webp" alt="image-20230923135633739"></p><h3 id="协同过滤算法"><a href="#协同过滤算法" class="headerlink" title="协同过滤算法"></a>协同过滤算法</h3><p>​协同过滤是一类流行的推荐系统算法，它们利用用户历史行为数据来进行推荐，而不依赖于物品的内容信息。协同过滤算法基于以下两个核心思想：</p><ol><li><strong>用户协同过滤</strong>（User-Based Collaborative Filtering）：这种方法基于用户之间的相似性来进行推荐。它假设如果两个用户在过去有相似的行为模式，那么他们在将来可能会有相似的兴趣。具体步骤包括：<ul><li>计算用户之间的相似性，通常使用余弦相似度或皮尔逊相关系数等度量。</li><li>选择与目标用户最相似的一组用户。</li><li>基于这些相似用户的行为来生成推荐，例如，选择相似用户喜欢的物品。</li></ul></li><li><strong>物品协同过滤</strong>（Item-Based Collaborative Filtering）：这种方法基于物品之间的相似性来进行推荐。它假设如果一个用户喜欢某个物品，那么他们也可能喜欢与该物品相似的其他物品。具体步骤包括：<ul><li>计算物品之间的相似性，通常使用余弦相似度或其他相似性度量。</li><li>对于目标用户，找到他们喜欢的物品，并基于这些物品的相似性来生成推荐。</li></ul></li></ol><p>​协同过滤算法的优点包括能够捕捉用户的复杂兴趣和推荐个性化的物品。然而，它们也面临一些挑战，如稀疏性（用户-物品交互数据通常是稀疏的）、冷启动问题（对于新用户或新物品，没有足够的历史数据进行推荐）和可扩展性问题（处理大规模数据时的计算复杂性）。</p><p>​在实际应用中，通常会将协同过滤算法与其他技术一起使用，如基于内容的推荐、深度学习模型等，以提高推荐系统的性能。此外，还可以采用改进的协同过滤算法，如加权协同过滤、矩阵分解方法（如奇异值分解和隐语义模型）等，以解决协同过滤算法的一些限制。</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231422848.webp" alt="image-20230923142205549"></p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231422456.webp" alt="image-20230923142220267"></p><ul><li><strong>将上述两个代价函数结合在一起，得到学习 <em>w</em>、<em>b</em> 和 <em>x</em> 的总体代价函数。</strong></li><li>先对人进行评估，选择最小化 <em>*<em>w</em>、*b</em>** 的代价函数。</li><li>再基于电影进行评估，选择最小化  <em><strong>x</strong></em> 的代价函数。</li></ul><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231422827.webp" alt="image-20230923142239629"></p><h3 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h3><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231435536.webp" alt="image-20230923143553349"></p><blockquote><p>   <em><strong>i</strong></em>   表示电影、   <em><strong>j</strong></em>   表示用户、   <em><strong>k</strong></em>   表示特征向量。</p></blockquote><h2 id="二分类的泛化"><a href="#二分类的泛化" class="headerlink" title="二分类的泛化"></a>二分类的泛化</h2><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231453662.webp" alt="image-20230923145323447"></p><h4 id="二分类协同过滤代价函数"><a href="#二分类协同过滤代价函数" class="headerlink" title="二分类协同过滤代价函数"></a>二分类协同过滤代价函数</h4><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231454843.webp" alt="image-20230923145450595"></p><h2 id="均值归一化"><a href="#均值归一化" class="headerlink" title="均值归一化"></a>均值归一化</h2><p>​帮助尚未对任何电影进行评级的新用户更好的预测电影等级。</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231540713.webp" alt="image-20230923154059477"></p><h2 id="TensorFlow实现协同过滤"><a href="#TensorFlow实现协同过滤" class="headerlink" title="TensorFlow实现协同过滤"></a>TensorFlow实现协同过滤</h2><p>Auto Grad（Diff ）：自动计算梯度</p><p><img src="https://blog-1318483047.cos.ap-nanjing.myqcloud.com/img%20/202309231629111.webp" alt="image-20230923162948840"></p><h2 id="寻找相关特征"><a href="#寻找相关特征" class="headerlink" title="寻找相关特征"></a>寻找相关特征</h2>]]></content>
+      
+      
+      <categories>
+          
+          <category> 机器学习 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Machine learning </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>聚类、异常检测</title>
       <link href="/posts/29154/"/>
       <url>/posts/29154/</url>

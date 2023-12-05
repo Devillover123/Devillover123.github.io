@@ -20,7 +20,7 @@
       
         <tags>
             
-            <tag> Pytorch </tag>
+            <tag> Multimodal </tag>
             
         </tags>
       
@@ -29,7 +29,7 @@
     
     
     <entry>
-      <title>多模态</title>
+      <title>知识蒸馏</title>
       <link href="/posts/29167/"/>
       <url>/posts/29167/</url>
       
@@ -38,14 +38,14 @@
       
       <categories>
           
-          <category> 多模态 </category>
+          <category> 知识蒸馏 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Pytorch </tag>
+            <tag> KD </tag>
             
         </tags>
       
@@ -54,7 +54,7 @@
     
     
     <entry>
-      <title>多模态</title>
+      <title>随心</title>
       <link href="/posts/29166/"/>
       <url>/posts/29166/</url>
       
@@ -63,14 +63,14 @@
       
       <categories>
           
-          <category> 多模态 </category>
+          <category> 随心 </category>
           
       </categories>
       
       
         <tags>
             
-            <tag> Pytorch </tag>
+            <tag> Let it go </tag>
             
         </tags>
       
